@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17.0.0/umd/react.production.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        const root = document.getElementById("root");
+        const h1 = document.createElement('h1');
+
+        h1.innerText = 'hello world';
+        h1.id = 'heading'
+        h1.className = 'test class-2';
+        h1.style.color = 'color: green; font-weight: bold'
+
+        document.body.appendChild(h1);
+        root.appendChild(h1); //gắn h1 vào thẻ div
+    </script>
+    <!-- 
+        1. React.createElement() -> React element là thành phần nhỏ nhất để làm việc với react
+        2. So sánh với document.createElement() -> DOM element
+        3. Thay đổi: id, className, style, ...
+        4. Thêm: text, HTML
+        5. Tạo
+            <h1 title="hello" class="heading">hello world</h1>
+        6. Tạo
+            ul>li 
+        7.Tạo
+            div>h2,p
+     -->
+     <script>
+        //2 cách : 
+        //DOM
+        const h1DOM = document.createElement('h1');
+        //thêm atribute
+        h1DOM.title = 'hello';
+        h1DOM.className = 'heading';
+        h1DOM.innerText = 'hello world'
+        document.body.appendChild(h1DOM);
+
+        //React
+        //Cú pháp: React.createElement(type, props, children, n)
+        //type: string là tag mà dc render ra UI
+        //      function/ class
+        //children là ở bên trong thẻ cha tạo ra, và children cũng là props
+
+        const h1React = React.createElement('h1', {
+            title: 'hello',
+            className: 'heading',
+        }, 'hello world');
+
+        //2 cách :
+        //DOM
+        const ulDOM = document.createElement('ul');
+        ulDOM.id = 'ul-id';
+        ulDOM.style = 'color: red; font-size: 30px';
+
+        const liDOM1 = document.createElement('li');
+        liDOM1.innerText = 'Javascript';
+        liDOM1.id = 'li-id';
+
+        const liDOM2 = document.createElement('li');
+        liDOM2.innerText = 'ReactJS';
+
+        ulDOM.appendChild(liDOM1);
+        ulDOM.appendChild(liDOM2);
+
+        document.body.appendChild(ulDOM);
+
+        //React
+        const ulReact = document.createElement(
+            'ul',
+            {
+                id: 'ul-id',
+                style: 'color: red; font-size: 30px'
+            },
+            React.createElement('li', { id: 'li-id' }, 'Javascript'),
+            React.createElement('li', null, 'ReactJS'),
+        );
+
+        //2 cách
+        
+
+     </script>
+</body>
+</html>

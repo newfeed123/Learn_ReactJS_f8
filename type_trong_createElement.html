@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18.0.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js"></script> 
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="root"></div>
+    <script type="text/babel">
+        //React
+        //Cú pháp: React.createElement(type, props, children, n)
+            //1. type: + string là tag mà dc render ra UI
+            //         + function/ class để tạo Components
+            //2. props là attribute, thuộc tính của tag, props phải là kiểu obj
+            //3. children là ở bên trong thẻ cha tạo ra, và children cũng là props
+        function Header(){
+            return (
+                <div className="header">Header</div>
+            )
+        }
+
+        class Content extends React.Component{
+            render() {
+                return (
+                    <div className="content">content</div>
+                )
+            }
+        }
+
+        const app = (
+            <div className="wrapper">
+                <Header></Header>
+                <Content></Content>
+                <div className="footer">Footer</div>
+            </div>
+        )
+        const container = document.getElementById('root');
+        
+        function PostItem(){
+            return (
+                <div className="post-item">
+                    <img src="https://files.fullstack.edu.vn/f8-prod/blog_posts/107/613a1e8d8fc47.jpg" alt="img"/>
+                    <h2 className="post-title">Học lập trình để đi làm</h2>
+                    <p className="post-desc">This is post description</p>
+                    <p className="post-published">This is post published</p>
+                </div>
+            )
+        }
+
+        const app2 = (
+            <div className="post-list">
+                <PostItem/>    
+                <PostItem/>    
+                <PostItem/>    
+            </div>
+        )
+
+        ReactDOM.render(app2, document.getElementById('root'))
+        
+    </script>
+  </body>
+</html>

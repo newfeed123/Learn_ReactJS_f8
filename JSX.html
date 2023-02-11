@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.production.min.js"></script> 
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="id"></div>
+    <!-- JSX: javascript XML 
+         JSX: ko phải HTML, cần có JS, Babel để dùng JSX
+         JSX và React-DOM
+    -->
+    <script>
+        const courses = [
+            {
+                name: 'HTML, CSS'
+            },
+            {
+                name: 'Responsive web design'
+            },
+            {
+                name: 'reactJS'
+            }
+        ];
+        const coursesRender = <ul>
+            {courses.map((course, index) => 
+                <li key={index}>
+                    {course.name}
+                </li>)
+            }
+        </ul>;
+
+        ReactDOM.render(coursesRender, document.getElementById('root'));
+    </script>
+</body>
+</html>

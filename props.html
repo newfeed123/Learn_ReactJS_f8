@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script crossorigin src="https://unpkg.com/react@18.0.0/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js"></script> 
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+      </head>
+    <body>
+        <!-- Props
+            -React elements
+                + sử dụng props giống như với atribute của thẻ HTML
+                + muốn có 2 props class, for thì chuyển sang => className, htmlFor
+                + tuân theo quy tắc sẵn 
+            -React components
+                + sử dụng props như đối số của Component
+                + tự do đặt tên props
+            - props "key" là props đặc biệt: chỉ dùng liên quan đến array
+            - props cơ bản là đối số của Component
+                => Props có thể là bất cứ kiểu DL gì
+            -sd destructuring
+        -->
+        <div id="root"></div>
+        <script type="text/babel">
+
+            //trong file PostItem.js (btap lần trc)
+            function PostItem(props){ 
+                if(typeof props.callback == 'function')
+                    props.callback(Math.random())
+
+                //khi viết jsx 2 dòng trở lên thêm cái ngoặc tròn cho nó đẹp
+                return(
+                    <div className="post-item">
+                        <img 
+                            src={props.image} 
+                            alt={props.title}
+                        />
+                        <h2 className="post-title">{props.title}</h2>
+                        <p className="post-desc">{props.desc}</p>
+                        <p className="post-published">{props.published}</p>
+                    </div>
+                )
+            }
+
+            //trong file App.js sẽ chứa:
+            function App() {
+
+                return (
+                    <div id="wrapper">
+                        <PostItem 
+                            image = "https://files.fullstack.edu.vn/f8-prod/blog_posts/107/613a1e8d8fc47.jpg"
+                            title = "1. Học lập trình để đi làm"
+                            desc = "1. This is post description"
+                            published = "1. This is post published"
+                            callback = {(random) => {
+                                console.log(random)
+                            }}
+                        />
+                        <PostItem 
+                            image = "https://files.fullstack.edu.vn/f8-prod/blog_posts/107/613a1e8d8fc47.jpg"
+                            title = "2. Học lập trình để đi làm"
+                            desc = "2. This is post description"
+                            published = "2. This is post published"
+                        />
+                        <PostItem 
+                            image = "https://files.fullstack.edu.vn/f8-prod/blog_posts/107/613a1e8d8fc47.jpg"
+                            title = "3. Học lập trình để đi làm"
+                            desc = "3. This is post description"
+                            published = "3. This is post published"
+                        />
+                    </div>
+                )
+            }
+
+            //trong file index.js sẽ để render, sẽ import ND file App vào
+            ReactDOM.render(<App />, document.getElementById('root'))
+        </script>
+    </body>
+</html>

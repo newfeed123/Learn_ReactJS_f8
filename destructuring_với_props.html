@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script crossorigin src="https://unpkg.com/react@18.0.0/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js"></script> 
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+      </head>
+    <body>
+        <!-- Props
+            -React elements
+                + sử dụng props giống như với atribute của thẻ HTML
+                + muốn có 2 props class, for thì chuyển sang => className, htmlFor
+                + tuân theo quy tắc sẵn 
+            -React components
+                + sử dụng props như đối số của Component
+                + tự do đặt tên props
+            - props "key" là props đặc biệt: chỉ dùng liên quan đến array
+            - props cơ bản là đối số của Component
+                => Props có thể là bất cứ kiểu DL gì
+            -sd destructuring
+        -->
+        <div id="root"></div>
+        <script type="text/babel">
+
+            const courses = 
+                [
+                {
+                "id": 15,
+                "title": "HTML CSS Pro",
+                "slug": "htmlcss",
+                "description": "Từ cơ bản tới chuyên sâu, thực hành 8 dự án, hàng trăm bài tập, trang hỏi đáp riêng, cấp chứng chỉ sau khóa học và mua một lần học mãi mãi.",
+                "image": "courses/15/62f13d2424a47.png",
+                "icon": "courses/15/62385d6c63dfa.png",
+                "video_type": "upload",
+                "video": null,
+                "old_price": 2499000,
+                "price": 1299000,
+                "pre_order_price": 699000,
+                "students_count": 2208,
+                "is_pro": true,
+                "is_coming_soon": false,
+                "is_selling": true,
+                "published_at": "2022-08-18T17:00:00.000000Z",
+                "is_registered": false,
+                "user_progress": 0,
+                "last_completed_at": null,
+                "image_url": "https://files.fullstack.edu.vn/f8-prod/courses/15/62f13d2424a47.png",
+                "icon_url": "https://files.fullstack.edu.vn/f8-prod/courses/15/62385d6c63dfa.png",
+                "video_url": "",
+                "landing_page_url": "/landing/htmlcss",
+                "is_pre_order": false,
+                "is_published": true
+                },
+                {
+                "id": 19,
+                "title": "JavaScript Pro",
+                "slug": "javascript-pro",
+                "description": "Khóa học JavaScript Pro",
+                "image": "courses/19/62f13cb607b4b.png",
+                "icon": "courses/19/62f13cb685c81.png",
+                "video_type": "upload",
+                "video": null,
+                "old_price": 0,
+                "price": 0,
+                "pre_order_price": 0,
+                "students_count": 0,
+                "is_pro": true,
+                "is_coming_soon": true,
+                "is_selling": false,
+                "published_at": "2023-01-31T17:00:00.000000Z",
+                "is_registered": false,
+                "user_progress": 0,
+                "last_completed_at": null,
+                "image_url": "https://files.fullstack.edu.vn/f8-prod/courses/19/62f13cb607b4b.png",
+                "icon_url": "https://files.fullstack.edu.vn/f8-prod/courses/19/62f13cb685c81.png",
+                "video_url": "",
+                "landing_page_url": "/landing/javascript-pro",
+                "is_pre_order": false,
+                "is_published": true
+                },
+                {
+                "id": 20,
+                "title": "ReactJS Pro",
+                "slug": "reactjs-pro",
+                "description": "Khóa học ReactJS Pro",
+                "image": "courses/20/62f13dded314e.png",
+                "icon": "courses/20/62f13ddf5e7f9.png",
+                "video_type": "upload",
+                "video": null,
+                "old_price": 0,
+                "price": 0,
+                "pre_order_price": 0,
+                "students_count": 0,
+                "is_pro": true,
+                "is_coming_soon": true,
+                "is_selling": false,
+                "published_at": "2023-05-31T17:00:00.000000Z",
+                "is_registered": false,
+                "user_progress": 0,
+                "last_completed_at": null,
+                "image_url": "https://files.fullstack.edu.vn/f8-prod/courses/20/62f13dded314e.png",
+                "icon_url": "https://files.fullstack.edu.vn/f8-prod/courses/20/62f13ddf5e7f9.png",
+                "video_url": "",
+                "landing_page_url": "/landing/reactjs-pro",
+                "is_pre_order": false,
+                "is_published": false
+                }
+                ]
+            //CourseItem
+            function CourseItem({image, title, description, students_count}){
+                return(
+                    <div className="course-item">
+                        <img src={image} alt={title} />
+                        <h2 className="title">{title}</h2>
+                        <p className="desc">{description}</p>
+                        <p className="students_count">{students_count}</p>
+                    </div>
+                )
+            }
+
+            // -------------------------------------------------------------------------------------
+            //trong file PostItem.js (btap lần trc)
+            function PostItem({
+                image,
+                title,
+                desc,
+                published,
+            }){ 
+                //khi viết jsx 2 dòng trở lên thêm cái ngoặc tròn cho nó đẹp
+                return(
+                    <div className="post-item">
+                        <img 
+                            src={image} 
+                            alt={title}
+                        />
+                        <h2 className="post-title">{title}</h2>
+                        <p className="post-desc">{desc}</p>
+                        <p className="post-published">{published}</p>
+                    </div>
+                )
+            }
+
+            //trong file App.js sẽ chứa:
+            function App() {
+
+                return (
+                    <div id="wrapper">
+                        <PostItem 
+                            image = "https://files.fullstack.edu.vn/f8-prod/blog_posts/107/613a1e8d8fc47.jpg"
+                            title = "1. Học lập trình để đi làm"
+                            desc = "1. This is post description"
+                            published = "1. This is post published"
+
+                        />
+                        <PostItem 
+                            image = "https://files.fullstack.edu.vn/f8-prod/blog_posts/107/613a1e8d8fc47.jpg"
+                            title = "2. Học lập trình để đi làm"
+                            desc = "2. This is post description"
+                            published = "2. This is post published"
+                        />
+                        <PostItem 
+                            image = "https://files.fullstack.edu.vn/f8-prod/blog_posts/107/613a1e8d8fc47.jpg"
+                            title = "3. Học lập trình để đi làm"
+                            desc = "3. This is post description"
+                            published = "3. This is post published"
+                        />
+                        {courses.map((course)=>
+                            <CourseItem 
+                                image={course.image_url}
+                                title={course.title}
+                                desc={course.description}
+                                studentsCount={course.students_count}
+                            /> 
+                        )}
+                    </div>
+                )               
+            }
+
+            //trong file index.js sẽ để render, sẽ import ND file App vào
+            ReactDOM.render(<App />, document.getElementById('root'))
+        </script>
+    </body>
+</html>
